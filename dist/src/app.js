@@ -1,0 +1,12 @@
+import express, { json } from "express";
+import "express-async-errors";
+import gamesRouter from "./routers/games-router";
+import consolesRouter from "./routers/consoles-router";
+import { loadEnv } from "./config/envs";
+loadEnv();
+var app = express();
+app.use(json());
+app.get("/health", function (req, res) { return res.send("I'am alive!"); });
+app.use(gamesRouter);
+app.use(consolesRouter);
+export default app;
